@@ -49,6 +49,7 @@ namespace Lab9
 
                     case ConsoleKey.D4:
                         Console.WriteLine("Max dist between leaves: {0}", tree.maxLeafDistance());
+                        Console.WriteLine("Min distance between leaves: {0}", tree.minLeafDistance());
                         break;
 
 
