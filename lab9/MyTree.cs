@@ -98,6 +98,44 @@ public class MyTree<T> where T: IComparable
 
     public int minLeafDistance()
     {
+        return -1;
+    }
+
+    public int maxLeafDistance()
+    {
+        int res = -1;
+        maxLeafDistanceHelper(root, ref res);
+        return res;
+    }
+
+    // returns max depth of leaf
+    private int maxLeafDistanceHelper(MyTreeNode? node, ref int res)
+    {
+        if(node == null)
+        {
+            return -1;
+        }
+
+        if(node.Left == null && node.Right == null)
+        {
+            return 0;
+        }
+
+        int max_depth_left = maxLeafDistanceHelper(node.Left, ref res);
+        int max_depth_right = maxLeafDistanceHelper(node.Right, ref res);
+
+        if(node.Left == null)
+        {
+            return max_depth_right + 1;
+        }
+
+        if(node.Right == null)
+        {
+            return max_depth_left + 1;
+        }
+
+        res = Math.Max(res, max_depth_left + max_depth_right + 2);
+        return Math.Max(max_depth_left, max_depth_right) + 1;
 
     }
 
